@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS Carousel</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="carousel-container">
+        <div class="carousel-track-container">
+            <ul class="carousel-track">
+                <li class="carousel-slide current-slide">
+                    <img class="carousel-image" src="https://placehold.co/800x400/F4A261/white?text=Slide+1" alt="Slide 1">
+                </li>
+                <li class="carousel-slide">
+                    <img class="carousel-image" src="https://placehold.co/800x400/E76F51/white?text=Slide+2" alt="Slide 2">
+                </li>
+                <li class="carousel-slide">
+                    <img class="carousel-image" src="https://placehold.co/800x400/2A9D8F/white?text=Slide+3" alt="Slide 3">
+                </li>
+            </ul>
+        </div>
+
+        <button class="carousel-button carousel-button--left is-hidden">
+            <img src="https://img.icons8.com/ios-filled/50/000000/chevron-left.png" alt="Previous" />
+        </button>
+        <button class="carousel-button carousel-button--right">
+            <img src="https://img.icons8.com/ios-filled/50/000000/chevron-right.png" alt="Next" />
+        </button>
+
+        <div class="carousel-nav">
+            <button class="carousel-indicator current-slide"></button>
+            <button class="carousel-indicator"></button>
+            <button class="carousel-indicator"></button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
