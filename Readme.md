@@ -1,7 +1,3 @@
-Of course. Here is a complete `README.md` file for your JavaScript Carousel project. You can create a file named `README.md` in your project folder and paste this content into it.
-
------
-
 # Simple JavaScript Carousel
 
 A lightweight, responsive, and easy-to-use image carousel built from scratch using pure HTML, CSS, and JavaScript. This project is a great way to understand the fundamentals of DOM manipulation, event handling, and CSS transitions without relying on any external libraries like jQuery or Swiper.js.
