@@ -1,4 +1,5 @@
 // Get references to all the necessary DOM elements
+const carouselContainer = document.querySelector('.carousel-container'); // NEW: Get the main container
 const track = document.querySelector('.carousel-track');
 const slides = Array.from(track.children);
 const nextButton = document.querySelector('.carousel-button--right');
@@ -19,15 +20,31 @@ slides.forEach(setSlidePosition);
 
 // Moves the carousel track to the target slide
 const moveToSlide = (track, currentSlide, targetSlide) => {
+    // If no target slide, loop back to the first slide (for autoplay)
+    if (!targetSlide) { // NEW: Handle looping for autoplay
+        targetSlide = slides[0];
+    }
     track.style.transform = 'translateX(-' + targetSlide.style.left + ')';
     currentSlide.classList.remove('current-slide');
     targetSlide.classList.add('current-slide');
+    
+    // Also update the dots when moving slide
+    const currentDot = dotsNav.querySelector('.current-slide');
+    const targetIndex = slides.findIndex(slide => slide === targetSlide);
+    const targetDot = dots[targetIndex];
+    
+    updateDots(currentDot, targetDot);
+    hideShowArrows(slides, prevButton, nextButton, targetIndex);
 };
 
 // Updates the active dot in the navigation
 const updateDots = (currentDot, targetDot) => {
-    currentDot.classList.remove('current-slide');
-    targetDot.classList.add('current-slide');
+    if (currentDot) { // NEW: Check if currentDot exists before removing class
+        currentDot.classList.remove('current-slide');
+    }
+    if (targetDot) { // NEW: Check if targetDot exists
+        targetDot.classList.add('current-slide');
+    }
 }
 
 // Hides/shows arrows based on the current slide index
@@ -50,41 +67,59 @@ const hideShowArrows = (slides, prevButton, nextButton, targetIndex) => {
 prevButton.addEventListener('click', e => {
     const currentSlide = track.querySelector('.current-slide');
     const prevSlide = currentSlide.previousElementSibling;
-    const currentDot = dotsNav.querySelector('.current-slide');
-    const prevDot = currentDot.previousElementSibling;
-    const prevIndex = slides.findIndex(slide => slide === prevSlide);
-
+    
     moveToSlide(track, currentSlide, prevSlide);
-    updateDots(currentDot, prevDot);
-    hideShowArrows(slides, prevButton, nextButton, prevIndex);
 });
 
 // When I click right, move slides to the right
 nextButton.addEventListener('click', e => {
     const currentSlide = track.querySelector('.current-slide');
     const nextSlide = currentSlide.nextElementSibling;
-    const currentDot = dotsNav.querySelector('.current-slide');
-    const nextDot = currentDot.nextElementSibling;
-    const nextIndex = slides.findIndex(slide => slide === nextSlide);
 
     moveToSlide(track, currentSlide, nextSlide);
-    updateDots(currentDot, nextDot);
-    hideShowArrows(slides, prevButton, nextButton, nextIndex);
 });
 
 // When I click the nav indicators, move to that slide
 dotsNav.addEventListener('click', e => {
-    // what indicator was clicked on?
     const targetDot = e.target.closest('button');
 
     if (!targetDot) return;
 
     const currentSlide = track.querySelector('.current-slide');
-    const currentDot = dotsNav.querySelector('.current-slide');
     const targetIndex = dots.findIndex(dot => dot === targetDot);
     const targetSlide = slides[targetIndex];
 
     moveToSlide(track, currentSlide, targetSlide);
-    updateDots(currentDot, targetDot);
-    hideShowArrows(slides, prevButton, nextButton, targetIndex);
 });
+
+
+// --- NEW: Autoplay Feature ---
+
+let autoplayInterval; // Variable to hold our interval
+
+const startAutoplay = () => {
+    autoplayInterval = setInterval(() => {
+        const currentSlide = track.querySelector('.current-slide');
+        const nextSlide = currentSlide.nextElementSibling;
+        
+        // If there is a next slide, move to it. Otherwise, loop to the first slide.
+        if (nextSlide) {
+            moveToSlide(track, currentSlide, nextSlide);
+        } else {
+            moveToSlide(track, currentSlide, slides[0]);
+        }
+    }, 3000); // Change 3000 to whatever interval you want (in milliseconds)
+};
+
+const stopAutoplay = () => {
+    clearInterval(autoplayInterval);
+};
+
+// Pause autoplay when mouse is over the carousel
+carouselContainer.addEventListener('mouseenter', stopAutoplay);
+
+// Resume autoplay when mouse leaves the carousel
+carouselContainer.addEventListener('mouseleave', startAutoplay);
+
+// Start the autoplay when the page loads
+startAutoplay();
