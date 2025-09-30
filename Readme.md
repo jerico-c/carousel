@@ -8,7 +8,6 @@
 A lightweight, responsive, and easy-to-use image carousel built from scratch using pure HTML, CSS, and JavaScript. This project is a great way to understand the fundamentals of DOM manipulation, event handling, and CSS transitions without relying on any external libraries.
 
 ![Carousel Screenshot](./screenshot.png)
-*(You can replace the above with a real screenshot of your project named `screenshot.png`)*
 
 ---
 
