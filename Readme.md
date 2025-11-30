@@ -113,9 +113,3 @@ It's easy to customize the carousel:
 
 ---
 
-## ## License
-
-This project is licensed under the MIT License. See the `LICENSE` file for details.
-````
-
-This format is more detailed and follows common conventions, making your project much more approachable for other developers. Let me know if you have any other questions\!
