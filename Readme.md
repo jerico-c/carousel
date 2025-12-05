@@ -68,7 +68,7 @@ To get a local copy up and running, follow these simple steps.
     ```
 2.  **Navigate to the project directory**:
     ```sh
-    cd simple-js-carousel
+    cd carousel
     ```
 3.  **Open `index.html` in your web browser**.
 
