@@ -1,6 +1,5 @@
 # Simple JavaScript Carousel
 
-![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
 ![Technology: JS](https://img.shields.io/badge/technology-JavaScript-blue.svg)
 ![Technology: CSS](https://img.shields.io/badge/technology-CSS3-orange.svg)
 ![Technology: HTML](https://img.shields.io/badge/technology-HTML5-red.svg)
